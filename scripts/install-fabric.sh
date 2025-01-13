@@ -169,8 +169,8 @@ cloneSamplesRepo() {
         echo "===> Changing directory to fabric-samples"
         cd fabric-samples
     else
-        echo "===> Cloning hyperledger/fabric-samples repo"
-        git clone -b main https://github.com/hyperledger/fabric-samples.git && cd fabric-samples
+        echo "===> Cloning YelenSCE/fabric-samples repo"
+        git clone -b main https://github.com/YelenSCE/fabric-samples.git && cd fabric-samples
     fi
 
     if GIT_DIR=.git git rev-parse v${VERSION} >/dev/null 2>&1; then
@@ -203,7 +203,7 @@ download() {
 
 pullBinaries() {
     echo "===> Downloading version ${FABRIC_TAG} platform specific fabric binaries"
-    download "${BINARY_FILE}" "https://github.com/hyperledger/fabric/releases/download/v${VERSION}/${BINARY_FILE}"
+    download "${BINARY_FILE}" "https://github.com/YelenSCE/fabric/releases/download/v${VERSION}/${BINARY_FILE}"
     if [ $? -eq 22 ]; then
         echo
         echo "------> ${FABRIC_TAG} platform specific fabric binary is not available to download <----"
@@ -239,7 +239,7 @@ pullImages() {
         echo "===> Pulling fabric ca Image"
         CA_IMAGE=(ca)
         singleImagePull "${CA_TAG}" "${CA_IMAGE[@]}"
-        echo "===> List out hyperledger images"
+        echo "===> List out Hyperledger images"
         ${CONTAINER_CLI} images | grep hyperledger
     else
         echo "========================================================="
@@ -310,7 +310,7 @@ fi
 
 if [[ "${_arg_comp[@]}" =~ (^| |,)d(ocker)? ]]; then
         echo
-        echo "Pull Hyperledger Fabric docker images"
+        echo "Pull HyperledgerFabric docker images"
         echo
         CONTAINER_CLI=docker
         pullImages
